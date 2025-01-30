@@ -1,0 +1,23 @@
+﻿Implement WeatherManager.CompareWeather
+
+This task is based on https://openweathermap.org open API. It does require registration and a key (which you get after registration), but it is completely free.
+Pay attention that key for an account may activate up to an hour. 
+Additionaly, be careful, free account may be banned for too much activity.
+
+Pay attention:
+	1) Free API provides up to 60 calls a minute. All further calls will be blocked until the end of the minute (and if too much further tries are made - an account will be blocked)
+		=> Just in case, check for 'Too many calls response' (See https://openweathermap.org/appid)
+	2) 'One Call API' should be used (it is free for getting information for up to 5 days before current day). - https://openweathermap.org/api/one-call-api
+	   Unfortunately, it supports only latitude/longitude specification, but there is a 'Geocoding API' to get latitude/longitude by city name: https://openweathermap.org/api/geocoding-api
+
+Requirements:
+	1) CompareWeather gets fully specified city names such as 'kyiv,ua' as an input and a number of days less or equal to 5.
+	   Number of days shows how many days starting from today (day 1) and going back should be included in comparison.
+	   E.g. dayCount = 2 => today, yesterday are included
+	   Non-existing cities should result in an ArgumentException. Any non-valid number of days should result in an ArgumentException.
+	   If the city name is not fully specified - use first city in the list returned by 'Geocoding API'
+	2) One Call API uses unix time as an input. You can use 12:00 of each day in UTC to get data, it still will send you hourly info for whole day. 
+	3) How to count WarmerDaysCount: days where average of all provided hourly temperatures in CityA is higher than in CityB.
+	4) How to count RainierDaysCount: days where sum of all provided hourly rain volume in CityA is higher than in CityB.
+	5) Please add unit tests for this task.
+

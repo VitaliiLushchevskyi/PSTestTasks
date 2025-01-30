@@ -1,0 +1,13 @@
+﻿Implement CommodityRepository.GetImportTariff, CommodityRepository.GetExportTariff.
+Please do not convert existing data to any other data structure. It is intended to use 'as is'.
+
+FullySpecifiedCommodityGroup, CommodityGroup contain data on classification, naming and tariffs for different commodities. 
+Lower tiers of CommodityGroup have a priority in defining tariffs imposed on the goods.
+If tier does not have specified tariffs, tariffs from group higher in hierarchy are imposed.
+
+So, for example: 
+commodity 1: import tariff 0, export tariff 0.05
+	commodity 1.1: import tariff 0, export tariff 0			-> resulting tariffs - 0, 0
+	commodity 1.2: import tariff null, export tariff null   -> resulting tariffs - 0, 0.05
+
+If the commodity does not exist methods should throw ArgumentException.

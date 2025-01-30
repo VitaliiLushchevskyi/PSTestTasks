@@ -1,0 +1,1 @@
+﻿Each folder (CharCounting, InternationalTradeTask, WeatherFromAPI) has TaskDescription.txt describing the task. Please complete all 3 tasks.

@@ -1,0 +1,3 @@
+﻿Implement StringProcessor.GetCharCount. This method should be built to handle large strings efficiently.
+It should output the count for each char that is specified in countedChars array. 
+The chars that are specified in countedChars array but not present in the string should still be returned with count 0.
