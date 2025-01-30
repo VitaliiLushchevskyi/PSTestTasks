@@ -39,10 +39,11 @@ namespace TestTasks.UnitTests.WeatherFromAPITests
             var httpClient = HttpClientMockHelper.CreateMockHttpClient([]);
             var weatherManager = new WeatherManager(httpClient);
 
-            // Act & Assert
+            // Act 
             var exception = await Assert.ThrowsAsync<ArgumentException>(async () =>
                 await weatherManager.CompareWeather("CityA", "CityB", 6));
 
+            // Assert
             Assert.Equal("Day count must be between 1 and 5.", exception.Message);
         }
     }
