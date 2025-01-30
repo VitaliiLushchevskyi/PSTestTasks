@@ -5,7 +5,7 @@ namespace TestTasks.WeatherFromAPI.Models
 {
     public class WeatherApiResponse
     {
-        [JsonPropertyName("data")]
+        [JsonPropertyName("hourly")]
         public List<WeatherDataModel> HourlyData { get; set; }
     }
 }

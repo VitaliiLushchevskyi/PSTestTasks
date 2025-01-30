@@ -33,7 +33,8 @@ namespace TestTasks
             var httpClient = new HttpClient();
             var weatherManager = new WeatherManager(httpClient);
             var comparisonResult = await weatherManager.CompareWeather("kyiv,ua", "lviv,ua", 4);
- 
+            Console.WriteLine($"Number of warmer days in {comparisonResult.CityA}: {comparisonResult.WarmerDaysCount}");
+            Console.WriteLine($"Number of rainier days in {comparisonResult.CityA}: {comparisonResult.RainierDaysCount}");
         }
     }
 }

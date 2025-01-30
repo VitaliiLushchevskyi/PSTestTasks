@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TestTasks.WeatherFromAPI.Helpers;
 using TestTasks.WeatherFromAPI.Models;
 
 namespace TestTasks.WeatherFromAPI
@@ -13,7 +14,7 @@ namespace TestTasks.WeatherFromAPI
         private readonly HttpClient _httpClient;
         private const string ApiKey = "0eeec1eb1f8d17fa7af099784c36c2f1";
         private const string GeocodingUrl = "http://api.openweathermap.org/geo/1.0/direct?q={0}&limit=1&appid=" + ApiKey;
-        private const string OneCallUrl = "https://api.openweathermap.org/data/3.0/onecall/timemachine?lat={0}&lon={1}&dt={2}&appid=" + ApiKey;
+        private const string OneCallUrl = "https://api.openweathermap.org/data/3.0/onecall?lat={0}&lon={1}&dt={2}&appid=" + ApiKey;
 
         public WeatherManager(HttpClient httpClient)
         {
@@ -77,7 +78,13 @@ namespace TestTasks.WeatherFromAPI
                 throw new Exception("Failed to fetch weather data.");
 
             var json = await response.Content.ReadAsStringAsync();
-            var weatherResponse = JsonSerializer.Deserialize<WeatherApiResponse>(json);
+
+            var options = new JsonSerializerOptions
+            {
+                Converters = { new RainConverter() }
+            };
+
+            var weatherResponse = JsonSerializer.Deserialize<WeatherApiResponse>(json, options);
 
             return weatherResponse?.HourlyData ?? throw new Exception("Invalid weather data received.");
         }
