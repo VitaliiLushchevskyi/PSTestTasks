@@ -15,8 +15,8 @@ namespace TestTasks.UnitTests.WeatherFromAPITests
             {
                 { $"http://api.openweathermap.org/geo/1.0/direct?q=CityA&limit=1&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "[{\"lat\":40.7128,\"lon\":-74.0061}]" },
                 { $"http://api.openweathermap.org/geo/1.0/direct?q=CityB&limit=1&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "[{\"lat\":34.0522,\"lon\":-118.2437}]" },
-                { $"https://api.openweathermap.org/data/3.0/onecall/?lat=40.7128&lon=-74.0061&dt={todayMiddayUtc}&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "{\"data\":[{\"temp\":20.5,\"rain\":1.2}]}" },
-                { $"https://api.openweathermap.org/data/3.0/onecall/?lat=34.0522&lon=-118.2437&dt={todayMiddayUtc}&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "{\"data\":[{\"temp\":22.1,\"rain\":0.0}]}" }
+                { $"https://api.openweathermap.org/data/3.0/onecall?lat=40.7128&lon=-74.0061&dt={todayMiddayUtc}&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "{\"hourly\":[{\"temp\":20.5,\"rain\":1.2}]}" },
+                { $"https://api.openweathermap.org/data/3.0/onecall?lat=34.0522&lon=-118.2437&dt={todayMiddayUtc}&appid=0eeec1eb1f8d17fa7af099784c36c2f1", "{\"hourly\":[{\"temp\":22.1,\"rain\":0.0}]}" }
             };
 
             var httpClient = HttpClientMockHelper.CreateMockHttpClient(mockResponses);
