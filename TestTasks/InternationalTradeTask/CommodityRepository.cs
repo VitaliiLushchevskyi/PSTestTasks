@@ -71,8 +71,32 @@ namespace TestTasks.InternationalTradeTask
         {
             foreach (var group in _allCommodityGroups)
             {
-                if (group.SubGroups != null && Array.Exists(group.SubGroups, sg => sg == commodity))
-                    return group;
+                if (group.SubGroups != null)
+                {
+                    if (Array.Exists(group.SubGroups, sg => sg == commodity))
+                        return group;
+
+                    var parent = GetParentRecursive(group.SubGroups, commodity);
+                    if (parent != null)
+                        return parent;
+                }
+            }
+            return null;
+        }
+
+        private ICommodityGroup GetParentRecursive(ICommodityGroup[] groups, ICommodityGroup commodity)
+        {
+            foreach (var group in groups)
+            {
+                if (group.SubGroups != null)
+                {
+                    if (Array.Exists(group.SubGroups, sg => sg == commodity))
+                        return group;
+
+                    var parent = GetParentRecursive(group.SubGroups, commodity);
+                    if (parent != null)
+                        return parent;
+                }
             }
             return null;
         }

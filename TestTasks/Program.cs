@@ -26,13 +26,14 @@ namespace TestTasks
 
             //second task usage
             var commodityRepository = new CommodityRepository();
-            Console.WriteLine(commodityRepository.GetImportTariff("Sugar confy, sugar preps. Ex chocolate confy"));
-            Console.WriteLine(commodityRepository.GetExportTariff("Sugar and honey"));
+            Console.WriteLine(commodityRepository.GetImportTariff("Sugar, sugar preparations and honey"));
+            Console.WriteLine(commodityRepository.GetExportTariff("Sugar, sugar preparations and honey"));
 
+            //third task usage
             var httpClient = new HttpClient();
             var weatherManager = new WeatherManager(httpClient);
             var comparisonResult = await weatherManager.CompareWeather("kyiv,ua", "lviv,ua", 4);
-            //Console.WriteLine(comparisonResult);
+ 
         }
     }
 }
